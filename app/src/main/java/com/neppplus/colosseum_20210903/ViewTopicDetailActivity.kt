@@ -25,6 +25,7 @@ class ViewTopicDetailActivity : BaseActivity() {
         mTopicData = intent.getSerializableExtra("topic") as TopicData
 
         Glide.with(mContext).load(mTopicData.imageURL).into(topicImg)
+        titleTxt.text = mTopicData.title
 
     }
 }
