@@ -2,6 +2,8 @@ package com.neppplus.colosseum_20210903
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -53,6 +55,13 @@ abstract class BaseActivity : AppCompatActivity() {
         backBtn.setOnClickListener {
             finish()
         }
+
+        notificationBtn.setOnClickListener {
+            Toast.makeText(mContext, "알림 목록 보러 갑니다", Toast.LENGTH_SHORT).show()
+        }
+
+
+//        모든 화면은 기본적으로 noti버튼은 숨겨두고 메인만 보여주기 처리(레이아웃이서 gone처리)
 
     }
 
