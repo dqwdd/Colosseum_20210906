@@ -3,6 +3,7 @@ package com.neppplus.colosseum_20210903
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.neppplus.colosseum_20210903.adapters.ReplyAdapter
 import com.neppplus.colosseum_20210903.datas.ReplyData
 import com.neppplus.colosseum_20210903.datas.TopicData
 import com.neppplus.colosseum_20210903.utils.ServerUtil
@@ -14,6 +15,7 @@ class ViewTopicDetailActivity : BaseActivity() {
     lateinit var mTopicData : TopicData
 
     val mReplyList = ArrayList<ReplyData>()
+    lateinit var mReplyAdapter: ReplyAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +37,11 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 //        나머지 데이터는 서버에서 가져오자
         getTopicDetailDataFromServer()
+
+
+        mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_item, mReplyList)
+        replyListView.adapter = mReplyAdapter
+
     }
 
 //    투표 현황 등, 최신 토론 상세 데이터를 다시 서버에서 불러오기
@@ -86,6 +93,10 @@ class ViewTopicDetailActivity : BaseActivity() {
 
             secondSideTitleTxt.text = mTopicData.sideList[1].title
             fistSideVoteCountTxt.text = "${mTopicData.sideList[1].voteCount}표"
+
+//            리스트뷰도 새로고침
+            mReplyAdapter.notifyDataSetChanged()//서버에서 데이터를 받아와도 해외 같은 경우 멀어서 느릴 수 있으니
+        // 이렇게 새로고침 넣어줌(UI새로고침 시 리스트뷰도 새로고침)
 
         }
 
