@@ -47,7 +47,10 @@ class ViewTopicDetailActivity : BaseActivity() {
                 ServerUtil.postRequestTopicVote(mContext, clickedSideId, object : ServerUtil.JsonResponseHandler {
                     override fun onResponse(jsonObj: JSONObject) {
 
-//                        투표 결과를 확인
+//                        투표 결과를 확인 => 새로 투표 현황을 다시 받아오자
+//                        이전에 함수로 분리해둔, 서버에서 상세 정보 받아오기 호출
+                        getTopicDetailDataFromServer()//아까 여기에서 다 파싱하고 불러오고 하는거 다 짜놨었으니 재활용
+
 
                     }
 
