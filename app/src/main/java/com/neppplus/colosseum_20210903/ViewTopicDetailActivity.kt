@@ -30,6 +30,15 @@ class ViewTopicDetailActivity : BaseActivity() {
         setValues()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        getTopicDetailDataFromServer()
+    }
+
+
+
+
     override fun setupEvents() {
 
         addReplyBtn.setOnClickListener {
@@ -119,6 +128,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 //                mTopicData를 새로 파싱한 데이터로 교체
 
                 mTopicData = TopicData.getTopicDataFromJson(topicObj)
+                mReplyList.clear()//계속 댓글을 다시 불러옴, 기존의 댓글을 지워주고 (중복 막기), UI 보여줌
 
 
 //                topicObj 안을 들여다 보면 댓글 목록도 같이 들어있다 -> 추가 파싱, UI 반영
