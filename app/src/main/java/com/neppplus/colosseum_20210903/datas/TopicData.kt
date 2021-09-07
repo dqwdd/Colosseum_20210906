@@ -27,7 +27,6 @@ class TopicData(
             topicData.id = json.getInt("id")
             topicData.title = json.getString("title")
             topicData.imageURL = json.getString("img_url")
-//            topicData.mySideId = json.getInt("my_side_id")
 
 
 //            토론의 하위 정보로 -> sides라는 JSONArray를 내려줌

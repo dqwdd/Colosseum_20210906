@@ -44,6 +44,7 @@ class ViewTopicDetailActivity : BaseActivity() {
                 Log.d("투표 진영 Id", clickedSideId.toString())
 
 
+
 //                해당 진영에 투표하기 (서버에 투표 실행)
                 ServerUtil.postRequestTopicVote(mContext, clickedSideId, object : ServerUtil.JsonResponseHandler {
                     override fun onResponse(jsonObj: JSONObject) {
@@ -101,9 +102,6 @@ class ViewTopicDetailActivity : BaseActivity() {
 //                mTopicData를 새로 파싱한 데이터로 교체
 
                 mTopicData = TopicData.getTopicDataFromJson(topicObj)
-//                mSideId = TopicData.getTopicDataFromJson(topicObj)
-
-
 
 
 //                topicObj 안을 들여다 보면 댓글 목록도 같이 들어있다 -> 추가 파싱, UI 반영
