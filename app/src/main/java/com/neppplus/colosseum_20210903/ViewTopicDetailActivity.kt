@@ -41,6 +41,13 @@ class ViewTopicDetailActivity : BaseActivity() {
 
                 val dataObj = jsonObj.getJSONObject("data")
                 val topicObj = dataObj.getJSONObject("topic")
+
+//                mTopicData를 새로 파싱한 데이터로 교체
+
+                mTopicData = TopicData.getTopicDataFromJson(topicObj)
+
+//                새로 받은 데이터로 UI 반영(득표 수 등등)
+
             }
 
         })
