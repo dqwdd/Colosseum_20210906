@@ -26,7 +26,20 @@ class ReplyAdapter(
         }
         row!!
 
+        val data = mList[position]
 
+        val selectedSideTxt = row.findViewById<TextView>(R.id.selectedSideTxt)
+        val writerNicknameTxt = row.findViewById<TextView>(R.id.writerTxt)
+        val createdTxt = row.findViewById<TextView>(R.id.createdTxt)
+        val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
+        val replyCountTxt = row.findViewById<TextView>(R.id.replyCountTxt)
+        val likeCountTxt = row.findViewById<TextView>(R.id.likeCountTxt)
+        val hateCountTxt = row.findViewById<TextView>(R.id.hateCountTxt)
+
+        contentTxt.text = data.content
+        replyCountTxt.text = "답글 ${data.replyCount}개"
+        likeCountTxt.text = "좋아요 ${data.lickCount}개"
+        hateCountTxt.text = "싫어요 ${data.hateCount}개"
 
         return row
     }
