@@ -31,7 +31,7 @@ class ReplyAdapter(
 
         val selectedSideTxt = row.findViewById<TextView>(R.id.selectedSideTxt)
         val writerNicknameTxt = row.findViewById<TextView>(R.id.writerTxt)
-        val createdTxt = row.findViewById<TextView>(R.id.createdTxt)
+        val createdAtTxt = row.findViewById<TextView>(R.id.createdTxt)
         val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
         val replyCountTxt = row.findViewById<TextView>(R.id.replyCountTxt)
         val likeCountTxt = row.findViewById<TextView>(R.id.likeCountTxt)
@@ -46,8 +46,7 @@ class ReplyAdapter(
 
         writerNicknameTxt.text = data.writer.nickname
 
-        val sdf = SimpleDateFormat("yyyy년 M월 d일")
-        createdTxt.text = sdf.format(data.createAt.time)
+        createdAtTxt.text = data.getFormattedTimeAgo()
 
         return row
     }
