@@ -3,6 +3,7 @@ package com.neppplus.colosseum_20210903
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
 import com.neppplus.colosseum_20210903.adapters.TopicAdapter
@@ -11,6 +12,7 @@ import com.neppplus.colosseum_20210903.datas.UserData
 import com.neppplus.colosseum_20210903.utils.ServerUtil
 import com.neppplus.colosseum_20210903.utils.ServerUtil.JsonResponseHandler
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.my_custom_action_bar.*
 import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
@@ -49,6 +51,11 @@ class MainActivity : BaseActivity() {
 
         mTopicAdapter = TopicAdapter(mContext, R.layout.topic_list_item, mTopicList)
         topicListView.adapter = mTopicAdapter
+
+
+//        backBtn의 숨김 처리(메인만 따로 숨김)
+
+        backBtn.visibility = View.GONE
 
     }
 
