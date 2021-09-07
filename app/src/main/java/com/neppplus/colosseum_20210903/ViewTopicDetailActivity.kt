@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.neppplus.colosseum_20210903.datas.TopicData
 import com.neppplus.colosseum_20210903.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_topic_detail.*
+import org.json.JSONObject
 
 class ViewTopicDetailActivity : BaseActivity() {
 
@@ -35,7 +36,14 @@ class ViewTopicDetailActivity : BaseActivity() {
 //    투표 현황 등, 최신 토론 상세 데이터를 다시 서버에서 불러오기
 
     fun getTopicDetailDataFromServer() {
-        ServerUtil
+        ServerUtil.getRequestTopicDetail(mContext, mTopicData.id, object : ServerUtil.JsonResponseHandler {
+            override fun onResponse(jsonObj: JSONObject) {
+
+                val dataObj = jsonObj.getJSONObject("data")
+                val topicObj = dataObj.getJSONObject("topic")
+            }
+
+        })
     }
 
 
