@@ -2,6 +2,7 @@ package com.neppplus.colosseum_20210903
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.neppplus.colosseum_20210903.adapters.ReplyAdapter
@@ -34,9 +35,16 @@ class ViewTopicDetailActivity : BaseActivity() {
 //        버튼이 눌리면 할 일(OnclickListener)을 적어두는 변수 (Interface 변수)
         val ocl = object : View.OnClickListener {
             override fun onClick(view: View?) { //==>p0를 view로 바꿨는데 view는 눌린게 어떤 버튼인지, 즉 눌린 버튼을 담아준다
+
 //                버튼이 눌리면 할 일
+//                view는 눌린게 어떤 버튼인지?, 즉 눌린 버튼을 담아준다
+                val clickedSideId = view!!.tag.toString().toInt()
+
+                Log.d("투표 진영 Id", clickedSideId.toString())
+
+
 //                해당 진영에 투표하기 (서버에 투표 실행)
-                ServerUtil.postRequestTopicVote(mContext, 1, object : ServerUtil.JsonResponseHandler {
+                ServerUtil.postRequestTopicVote(mContext, clickedSideId, object : ServerUtil.JsonResponseHandler {
                     override fun onResponse(jsonObj: JSONObject) {
 
 //                        투표 결과를 확인
@@ -59,6 +67,11 @@ class ViewTopicDetailActivity : BaseActivity() {
     override fun setValues() {
 
         mTopicData = intent.getSerializableExtra("topic") as TopicData
+
+//        투표 버튼에 각 진영이 어떤 진영인지 "버튼에 메모해두면" -> 투표할 때, 그 진영이 뭔지 알아낼 수 있다.
+        voteToFirstSideBtn.tag = mTopicData.sideList[0].id
+        voteToSecondSideBtn.tag = mTopicData.sideList[1].id
+
 
         Glide.with(mContext).load(mTopicData.imageURL).into(topicImg)
         titleTxt.text = mTopicData.title
