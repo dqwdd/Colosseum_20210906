@@ -20,7 +20,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.topic_list_item)
+        setContentView(R.layout.activity_view_topic_detail)
         setupEvents()
         setValues()
     }
