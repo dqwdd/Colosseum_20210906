@@ -14,6 +14,18 @@ abstract class BaseActivity : AppCompatActivity() {
 
         mContext = this
 
+//        모든 화면의 onCreate에서 커스텀 액션바 적용도 실행.
+//        액션바가 존재하는 화면에서만 실행하고 싶다~(if (supportActionBar != null)setCustomActionBar()하거나 밑에꺼 하거나(더 코틀린다움)
+//        액션바가 존재할 때만->별개의 함수를 실행
+
+        supportActionBar?.let {
+//            액션바가 널이 아닐 때만 실행시켜줄 코드(코틀린다운 코드)
+            setCustomActionBar()
+        }
+
+
+
+
     }
 
     abstract fun setupEvents()
