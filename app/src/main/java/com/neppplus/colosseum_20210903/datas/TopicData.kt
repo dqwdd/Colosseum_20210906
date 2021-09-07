@@ -11,7 +11,10 @@ class TopicData(
 //    선택 가능한 진영의 목록 담아줄 ArrayList
     val sideList = ArrayList<SideData>()//()붙이는거 == 객체화
 
+//    내가 투표한 진영의 Id가 뭔가?
     var mySideId = 0
+//    내가 투표한 진영 자체를 저장
+    var myselectedSide : SideData? = null//투표한 진영이 없다면 널이 될 수 있다
 
 
     companion object {
@@ -47,6 +50,12 @@ class TopicData(
 
 //            내가 선택한 진영의 id?
             topicData.mySideId = json.getInt("my_side_id")
+
+//            그 진영이 어떤건지? => null로 내려오면 파싱 x
+            if (json.isNull("my_side")) {
+//                null이 아닐 때만 파싱
+                topicData.myselectedSide = SideData.getSideDataFromJson( json.getJSONObject("my_side"))
+            }
 
 //            최종 결과 선정
             return topicData
