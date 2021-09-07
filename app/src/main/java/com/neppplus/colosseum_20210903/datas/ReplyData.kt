@@ -19,8 +19,12 @@ class ReplyData (
 //    이 댓글을 적은 사람
     lateinit var writer : UserData
 
-    constructor() : this(0,"",0,0,false,false,0)
+//    이 댓글이 적힌 시점 (날짜 + 시간) -> Calendar 클래스 활용
+//    SimpleDateFormat을 이용하면 -> 다양한 양식으로 가공 가능
+//    ex) 지금 "2021-07-02 06:43:26"이건데 스트링으로 받자나 이걸 활용함
 
+
+    constructor() : this(0,"",0,0,false,false,0)
 
     companion object {
 
