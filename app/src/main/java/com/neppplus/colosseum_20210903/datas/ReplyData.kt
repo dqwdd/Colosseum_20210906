@@ -1,6 +1,8 @@
 package com.neppplus.colosseum_20210903.datas
 
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ReplyData (
     var id:Int,
@@ -22,11 +24,16 @@ class ReplyData (
 //    이 댓글이 적힌 시점 (날짜 + 시간) -> Calendar 클래스 활용
 //    SimpleDateFormat을 이용하면 -> 다양한 양식으로 가공 가능
 //    ex) 지금 "2021-07-02 06:43:26"이건데 스트링으로 받자나 이걸 활용함
+    val createAt = Calendar.getInstance() //현재
 
 
     constructor() : this(0,"",0,0,false,false,0)
 
     companion object {
+
+//        서버가 주는 날짜 양식을 분석하기 위한 SimpleDateFormat
+        val serverFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
 
 //        JSON을 넣으면 -> ReplyData로 변환해주는 기능
 
@@ -51,6 +58,18 @@ class ReplyData (
 //            작성자 정보 파싱 -> UserData의 기능 활용
             val userObj = json.getJSONObject("user")//이름이 user인 JSONObject를 달라
             replyData.writer = UserData.getUserDataFromJson(userObj)//이제 이걸 어댑터가 뿌려줄 때 사용
+
+
+//            작성 일시 -> String으로 받아서 -> Calendar로 변환해서 저장
+            val createdAtString = json.getString("create_at")
+            //이걸 어케 변형하냐~-->위에yyyymm어쩌구
+
+//            댓글 데이터 작성 일시에 serverFormat 변수를 이용해서 시간 저장
+            replyData.createAt.time = serverFormat.parse(createdAtString)
+
+
+
+
 
             return replyData
 
