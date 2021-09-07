@@ -10,8 +10,11 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.neppplus.colosseum_20210903.R
+import com.neppplus.colosseum_20210903.ViewTopicDetailActivity
 import com.neppplus.colosseum_20210903.datas.ReplyData
 import com.neppplus.colosseum_20210903.datas.TopicData
+import com.neppplus.colosseum_20210903.utils.ServerUtil
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 
 class ReplyAdapter(
@@ -58,6 +61,25 @@ class ReplyAdapter(
 //        도전과제 : 두 개의 텍스트뷰가 눌리면 할 일이 거의 동일
 //        차이점 : true 보내냐, false보내냐가 다름
 
+        val ocl = object : View.OnClickListener {
+            override fun onClick(view: View?) {
+
+                val isLike = view!!.tag.toString().toBoolean()
+
+                ServerUtil.postRequestLikeOrHate(mContext, data.id, isLike, object : ServerUtil.JsonResponseHandler{
+                    override fun onResponse(jsonObj: JSONObject) {
+
+//                        어댑터 안에서 -> ViewTopicDetailActivity의 (mContext변수에 담겨있다!)기능 실행
+
+                        (mContext as ViewTopicDetailActivity).getTopicDetailDataFromServer()
+
+                    }
+
+                })
+
+            }
+        }
+
 //        tag 속성 이용, 하나의 코드에서 두 개 대응
         likeCountTxt.tag = true
         hateCountTxt.tag = false
@@ -65,13 +87,9 @@ class ReplyAdapter(
 //        추가설명 : 좋아요/싫어요 갯수 바로 변경되도록 (어댑터 -> 액티비티의 기능 실행)
 
 
-        likeCountTxt.setOnClickListener {
-            Toast.makeText(mContext, "좋아요 클릭", Toast.LENGTH_SHORT).show()
-        }
+        likeCountTxt.setOnClickListener (ocl)
 
-        hateCountTxt.setOnClickListener {
-            Toast.makeText(mContext, "싫어요 클릭", Toast.LENGTH_SHORT).show()
-        }
+        hateCountTxt.setOnClickListener (ocl)
 
         return row
     }

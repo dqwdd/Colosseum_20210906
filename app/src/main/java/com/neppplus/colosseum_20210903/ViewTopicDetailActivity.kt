@@ -106,8 +106,8 @@ class ViewTopicDetailActivity : BaseActivity() {
         titleTxt.text = mTopicData.title
 
 //        나머지 데이터는 서버에서 가져오자
-        getTopicDetailDataFromServer()
-
+//        getTopicDetailDataFromServer()
+//        위에서 가져와서(onResume) 불러오지 말자, 두 번 불러와서 문제 생김(onResume이 불러올 때랑 시차가 차이나서 문제생김)
 
         mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_item, mReplyList)
         replyListView.adapter = mReplyAdapter
