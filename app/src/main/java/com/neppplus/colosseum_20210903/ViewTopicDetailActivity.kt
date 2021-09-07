@@ -15,6 +15,7 @@ import org.json.JSONObject
 class ViewTopicDetailActivity : BaseActivity() {
 
     lateinit var mTopicData : TopicData
+//    lateinit var mSideId : TopicData
 
     val mReplyList = ArrayList<ReplyData>()
     lateinit var mReplyAdapter: ReplyAdapter
@@ -100,6 +101,8 @@ class ViewTopicDetailActivity : BaseActivity() {
 //                mTopicData를 새로 파싱한 데이터로 교체
 
                 mTopicData = TopicData.getTopicDataFromJson(topicObj)
+//                mSideId = TopicData.getTopicDataFromJson(topicObj)
+
 
 
 
@@ -137,6 +140,26 @@ class ViewTopicDetailActivity : BaseActivity() {
 
             secondSideTitleTxt.text = mTopicData.sideList[1].title
             fistSideVoteCountTxt.text = "${mTopicData.sideList[1].voteCount}표"
+
+
+//            투표 여부에 따라 버튼들에 다른 문구 적용
+            if(mTopicData.mySideId == -1) {
+                voteToFirstSideBtn.text = "투표하기"
+                voteToSecondSideBtn.text = "투표하기"
+            }
+            else {
+//                내 투표 진영의 id가  첫째 진영의 id와 같은지?
+                if(mTopicData.mySideId == mTopicData.sideList[0].id) {
+                    voteToFirstSideBtn.text = "취소하기"
+                    voteToSecondSideBtn.text = "선택하기"
+                }
+                else {
+                    voteToFirstSideBtn.text = "선택하기"
+                    voteToSecondSideBtn.text = "취소하기"
+                }
+
+            }
+
 
 //            리스트뷰도 새로고침
             mReplyAdapter.notifyDataSetChanged()//서버에서 데이터를 받아와도 해외 같은 경우 멀어서 느릴 수 있으니

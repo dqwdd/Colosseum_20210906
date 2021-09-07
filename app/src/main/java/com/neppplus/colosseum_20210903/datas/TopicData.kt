@@ -11,6 +11,8 @@ class TopicData(
 //    선택 가능한 진영의 목록 담아줄 ArrayList
     val sideList = ArrayList<SideData>()//()붙이는거 == 객체화
 
+    var mySideId = 0
+
 
     companion object {
 
@@ -25,6 +27,7 @@ class TopicData(
             topicData.id = json.getInt("id")
             topicData.title = json.getString("title")
             topicData.imageURL = json.getString("img_url")
+//            topicData.mySideId = json.getInt("my_side_id")
 
 
 //            토론의 하위 정보로 -> sides라는 JSONArray를 내려줌
@@ -43,6 +46,8 @@ class TopicData(
 
             }
 
+//            내가 선택한 진영의 id?
+            topicData.mySideId = json.getInt("my_side_id")
 
 //            최종 결과 선정
             return topicData
