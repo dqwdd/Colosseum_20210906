@@ -53,13 +53,13 @@ class ReplyData (
 //            1시간 이내면 -> ?분전으로 결과 나오게 하자
             return "${interval/1000/60}분 전"
         }
-        else if (interval < 1 * 24 * 60 * 60 * 1000) {
+        else if (interval < 24 * 60 * 60 * 1000) {
 //            1일이내면 -> ?시간전으로 결과 나오게 하자
-            return "${interval/1000/60/60}시간 전"
+            return "${interval / 1000 / 60 / 60}시간 전"
         }
-        else if (interval < 1 * 5 * 24 * 60 * 60 * 1000) {
+        else if (interval < 5 * 24 * 60 * 60 * 1000) {
 //            5일 이내면 -> 5일이내로 결과 나오게 하자
-            return "${interval/1000/60/24}일 전"
+            return "${interval / 1000 / 60 / 60 / 24}일 전"
         }
         else {
 //            5일 이상이면 -> yyyy년 M월 d일로 가공

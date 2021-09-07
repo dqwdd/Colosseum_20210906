@@ -325,7 +325,7 @@ class ServerUtil {
 
 //            2. 어떤 데이터를 들고 갈것인가? 파라미터
              val formData = FormBody.Builder()
-//                    .add("topic_id", topic_id.toString())
+                    .add("topic_id", topicId.toString())
                    .add("content", content)
                     .build()
 

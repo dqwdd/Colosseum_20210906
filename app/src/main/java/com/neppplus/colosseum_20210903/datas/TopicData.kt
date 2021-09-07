@@ -52,7 +52,7 @@ class TopicData(
             topicData.mySideId = json.getInt("my_side_id")
 
 //            그 진영이 어떤건지? => null로 내려오면 파싱 x
-            if (json.isNull("my_side")) {
+            if (!json.isNull("my_side")) {
 //                null이 아닐 때만 파싱
                 topicData.myselectedSide = SideData.getSideDataFromJson( json.getJSONObject("my_side"))
             }

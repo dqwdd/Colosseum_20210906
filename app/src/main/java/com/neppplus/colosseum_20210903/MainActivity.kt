@@ -23,8 +23,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         setupEvents()
         setValues()
     }
@@ -62,7 +60,7 @@ class MainActivity : BaseActivity() {
 
 //    서버에서 메인 화면에 뿌려줄 정보를 받아오기
     fun getMainDataFromServer() {
-        ServerUtil.getRequestMainData(mContext, object : JsonResponseHandler {
+        ServerUtil.getRequestMainData(mContext, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(jsonObj: JSONObject) {
 
 //                응답 - jsonObj 분석 (파싱) => 토론 주제들을 서버가 내려줌

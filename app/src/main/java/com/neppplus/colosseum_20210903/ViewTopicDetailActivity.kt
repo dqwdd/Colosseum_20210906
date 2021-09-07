@@ -17,11 +17,9 @@ import org.json.JSONObject
 class ViewTopicDetailActivity : BaseActivity() {
 
     lateinit var mTopicData : TopicData
-//    lateinit var mSideId : TopicData
 
     val mReplyList = ArrayList<ReplyData>()
     lateinit var mReplyAdapter: ReplyAdapter
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -164,7 +162,7 @@ class ViewTopicDetailActivity : BaseActivity() {
             fistSideVoteCountTxt.text = "${mTopicData.sideList[0].voteCount}표"
 
             secondSideTitleTxt.text = mTopicData.sideList[1].title
-            fistSideVoteCountTxt.text = "${mTopicData.sideList[1].voteCount}표"
+            SecondSideVoteCountTxt.text = "${mTopicData.sideList[1].voteCount}표"
 
 
 //            투표 여부에 따라 버튼들에 다른 문구 적용

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.neppplus.colosseum_20210903.R
 import com.neppplus.colosseum_20210903.datas.ReplyData
@@ -47,6 +48,30 @@ class ReplyAdapter(
         writerNicknameTxt.text = data.writer.nickname
 
         createdAtTxt.text = data.getFormattedTimeAgo()
+
+
+//        해당 댓글에 좋아요/싫어요 찍었다 : 서버에 전송
+
+//        API : POST - topic_reply_like
+//        토큰값 / 댓글 id / true or false (좋아요/싫어요) 파라미터
+
+//        도전과제 : 두 개의 텍스트뷰가 눌리면 할 일이 거의 동일
+//        차이점 : true 보내냐, false보내냐가 다름
+
+//        tag 속성 이용, 하나의 코드에서 두 개 대응
+        likeCountTxt.tag = true
+        hateCountTxt.tag = false
+
+//        추가설명 : 좋아요/싫어요 갯수 바로 변경되도록 (어댑터 -> 액티비티의 기능 실행)
+
+
+        likeCountTxt.setOnClickListener {
+            Toast.makeText(mContext, "좋아요 클릭", Toast.LENGTH_SHORT).show()
+        }
+
+        hateCountTxt.setOnClickListener {
+            Toast.makeText(mContext, "싫어요 클릭", Toast.LENGTH_SHORT).show()
+        }
 
         return row
     }

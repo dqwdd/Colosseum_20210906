@@ -26,19 +26,10 @@ class UserData(
             userData.email = json.getString("email")
             userData.nickname = json.getString("nick_name")
 
-
-
-
 //            최종 결과 선정
             return userData
         }
 
-
-
-
-
-
     }
-
 
 }
