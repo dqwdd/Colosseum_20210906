@@ -1,6 +1,7 @@
 package com.neppplus.colosseum_20210903
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -31,7 +32,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     }
 
-    abstract fun setupEvents()
+    abstract fun setupEvents(
+    )
     abstract fun setValues()
 
 
@@ -58,6 +60,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
         notificationBtn.setOnClickListener {
             Toast.makeText(mContext, "알림 목록 보러 갑니다", Toast.LENGTH_SHORT).show()
+            val myIntent = Intent(mContext, NotificationListActivity::class.java)
+            startActivity(myIntent)
         }
 
 
