@@ -13,6 +13,7 @@ import com.neppplus.colosseum_20210903.ViewTopicDetailActivity
 import com.neppplus.colosseum_20210903.datas.NotiData
 import com.neppplus.colosseum_20210903.utils.ServerUtil
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 
 class NotiListAdapter(
     val mContext : Context,
@@ -33,10 +34,14 @@ class NotiListAdapter(
         val data = mList[position]
 
         val notiTitleTxt = row.findViewById<TextView>(R.id.notiTitleTxt)
+        val createdAtTxt = row.findViewById<TextView>(R.id.createdAtTxt)
 
         notiTitleTxt.text = data.title
 
 
+//        Calendar -> String으로 가공(SimpleDateFormat - format 활용)
+        val sdf = SimpleDateFormat("yyyy년 M월 d일 a h:mm")
+        createdAtTxt.text = sdf.format(data.createdAt.time)
 
 
         return row
