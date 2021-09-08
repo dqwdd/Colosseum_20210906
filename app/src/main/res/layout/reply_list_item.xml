@@ -73,6 +73,8 @@
                 android:id="@+id/replyCountTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@drawable/black_border_rect"
                 android:text="답글 ?개"/>
 
             <TextView
