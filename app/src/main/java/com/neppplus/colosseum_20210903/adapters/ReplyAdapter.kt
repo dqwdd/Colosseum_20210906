@@ -52,6 +52,8 @@ class ReplyAdapter(
 
         createdAtTxt.text = data.getFormattedTimeAgo()
 
+        likeCountTxt.tag = true
+        hateCountTxt.tag = false
 
 //        해당 댓글에 좋아요/싫어요 찍었다 : 서버에 전송
 
@@ -81,14 +83,12 @@ class ReplyAdapter(
         }
 
 //        tag 속성 이용, 하나의 코드에서 두 개 대응
-        likeCountTxt.tag = true
-        hateCountTxt.tag = false
+
 
 //        추가설명 : 좋아요/싫어요 갯수 바로 변경되도록 (어댑터 -> 액티비티의 기능 실행)
 
 
         likeCountTxt.setOnClickListener (ocl)
-
         hateCountTxt.setOnClickListener (ocl)
 
         return row

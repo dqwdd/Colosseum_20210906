@@ -389,7 +389,7 @@ class ServerUtil {
 //            2. 어떤 데이터를 들고 갈것인가? 파라미터
     val formData = FormBody.Builder()
         .add("reply_id", replyId.toString())
-                   .add("is_Like", isLike.toString())
+                   .add("is_like", isLike.toString())
         .build()
 
 //            3. 어떤 방식으로 접근할 것인지 Request에 같이 적어주자.
