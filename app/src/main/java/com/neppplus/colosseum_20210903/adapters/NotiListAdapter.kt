@@ -32,6 +32,11 @@ class NotiListAdapter(
 
         val data = mList[position]
 
+        val notiTitleTxt = row.findViewById<TextView>(R.id.notiTitleTxt)
+
+        notiTitleTxt.text = data.title
+
+
 
 
         return row
