@@ -1,6 +1,7 @@
 package com.neppplus.colosseum_20210903.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.neppplus.colosseum_20210903.NotificationListActivity
 import com.neppplus.colosseum_20210903.R
+import com.neppplus.colosseum_20210903.ViewReplyDetailActivity
 import com.neppplus.colosseum_20210903.ViewTopicDetailActivity
 import com.neppplus.colosseum_20210903.datas.ReplyData
 import com.neppplus.colosseum_20210903.datas.TopicData
@@ -131,6 +134,11 @@ class ReplyAdapter(
 //        임시처리 : 답글 갯수도 눌러면 이벤트
         replyCountTxt.setOnClickListener {
 //            답글 목록 보는 화면으로 이동
+
+            val myIntent = Intent(mContext, ViewReplyDetailActivity::class.java)
+            myIntent.putExtra("replyData", data)
+            mContext.startActivity(myIntent)
+
         }
 
         return row

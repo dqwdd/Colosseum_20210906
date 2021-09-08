@@ -10,11 +10,13 @@
 
 
     <TextView
+        android:id="@+id/sideAndNicknameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(진영) 작성자 닉네임"/>
 
     <TextView
+        android:id="@+id/replyContentTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="댓글 내용 자리"
@@ -22,6 +24,7 @@
         android:textSize="17sp"/>
 
     <ListView
+        android:id="@+id/replyListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"

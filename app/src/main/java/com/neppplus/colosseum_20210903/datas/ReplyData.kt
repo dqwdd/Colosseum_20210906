@@ -2,6 +2,7 @@ package com.neppplus.colosseum_20210903.datas
 
 import android.util.Log
 import org.json.JSONObject
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -12,7 +13,7 @@ class ReplyData (
     var hateCount: Int,
     var myLike : Boolean,
     var myHate : Boolean,
-    var replyCount : Int) {
+    var replyCount : Int) : Serializable {
 
 //    ReplyData의 하위 개념들
 
