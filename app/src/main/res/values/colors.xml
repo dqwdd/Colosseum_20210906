@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="like_red">#DC6757</color>
     <color name="hate_blue">#FF248BFF</color>
+    <color name="gray">#DFDFDF</color>
 </resources>

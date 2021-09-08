@@ -68,16 +68,20 @@ class ReplyAdapter(
 
         if (data.myLike) {
             likeCountTxt.setBackgroundResource(R.drawable.red_border_rect)
+            likeCountTxt.setTextColor(mContext.resources.getColor(R.color.like_red))
         }
         else {
             likeCountTxt.setBackgroundResource(R.drawable.black_border_rect)
+            likeCountTxt.setTextColor(mContext.resources.getColor(R.color.black))
         }
 
         if (data.myHate) {
             hateCountTxt.setBackgroundResource(R.drawable.blue_border_rect)
+            hateCountTxt.setTextColor(mContext.resources.getColor(R.color.hate_blue))
         }
         else {
             hateCountTxt.setBackgroundResource(R.drawable.black_border_rect)
+            hateCountTxt.setTextColor(mContext.resources.getColor(R.color.black))
         }
 
 
