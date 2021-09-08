@@ -58,6 +58,16 @@ class NotificationListActivity : BaseActivity() {
                 }
 
 
+//                응용문제 답안
+//                알림 목록을 불러오면 -> 맨 위의 알림까지는 내가 읽었다고 서버에 전파
+                ServerUtil.postRequestNotificationRead(mContext, mNotiList[0].id, null)
+//                4. 응용(도전과제)
+//                다 읽은걸로 처리하기
+//                - 리스트뷰 작업이 끝나면 별도로 진행
+//                - POST - /notification : 파라미터 - noti_id : 읽은 알림 목록 중 최신 것의 id 값
+//                => 거기까지 읽은 걸로 서버가 처리함
+//                => 앱단에서는 서버에 다녀와서 할 일이 없다
+
 
             }
 
