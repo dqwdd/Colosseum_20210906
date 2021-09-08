@@ -3,9 +3,11 @@ package com.neppplus.colosseum_20210903
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
+import com.google.firebase.iid.FirebaseInstanceId
 import com.neppplus.colosseum_20210903.adapters.TopicAdapter
 import com.neppplus.colosseum_20210903.datas.TopicData
 import com.neppplus.colosseum_20210903.datas.UserData
@@ -25,6 +27,9 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         setupEvents()
         setValues()
+
+        Log.d("푸시알림-디바이스토큰", FirebaseInstanceId.getInstance().token!!)
+
     }
 
     override fun setupEvents() {
