@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "618102532288",
+    "project_id": "colosseum-20210903ybj",
+    "storage_bucket": "colosseum-20210903ybj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618102532288:android:a0c74b1a2eaaefd2d4e525",
+        "android_client_info": {
+          "package_name": "com.neppplus.colosseum_20210903"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618102532288-ur9pnhe142i455dq45t66csp38q993h3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVePvdeis-ZQ7GdJsagCmEB0JzQVO2d7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618102532288-ur9pnhe142i455dq45t66csp38q993h3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

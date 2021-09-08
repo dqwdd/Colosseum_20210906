@@ -27,7 +27,7 @@ class ChildReplyAdapter(
 
         var tempRow = convertView
         if (tempRow == null) {
-            tempRow = mInflater.inflate(R.layout.noti_list_item, null)
+            tempRow = mInflater.inflate(R.layout.chile_reply_list_item, null)
         }
 
         val row = tempRow!!
@@ -40,7 +40,9 @@ class ChildReplyAdapter(
 
 
 
-        childContentTxt.text =
+        childContentTxt.text =""
+
+        childSideAndNicknameTxt.text =""
 
 
         return row
