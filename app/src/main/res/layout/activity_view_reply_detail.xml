@@ -37,9 +37,11 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/replyEdt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="답글을 입력하세요"
+            android:minEms="5"
             android:layout_weight="1"/>
 
         <Button

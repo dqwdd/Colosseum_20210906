@@ -543,6 +543,29 @@ class ServerUtil {
         }
 
 
+
+
+        fun postRequestReplySend(context: Context, sendReply: String, handler : JsonResponseHandler? ){
+
+            val urlString = "${HOST_URL}POST/topic_reply"
+
+            val formData = FormBody.Builder()
+                .add("topic_reply", sendReply.toString())
+                .build()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .post(formData)//짐을 넣을거면 여기다 넣어라
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .build()
+
+            val client = OkHttpClient()
+
+
+
+        }
+
+
     }
 
 }

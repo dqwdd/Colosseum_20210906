@@ -24,7 +24,7 @@ class ViewReplyDetailActivity : BaseActivity() {
 
         mReplyData = intent.getSerializableExtra("replyData") as ReplyData
 
-        sideAndNicknameTxt.text = "(${mReplyData.selectedSide}) ${mReplyData.id}"
+        sideAndNicknameTxt.text = "(${mReplyData.selectedSide.title}) ${mReplyData.writer.nickname}"
         replyContentTxt.text = mReplyData.content
 
     }
