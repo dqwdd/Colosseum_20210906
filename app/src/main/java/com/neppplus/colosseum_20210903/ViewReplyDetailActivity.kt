@@ -43,7 +43,7 @@ class ViewReplyDetailActivity : BaseActivity() {
                         imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
 
                     }
-
+//
 
                 }
 
