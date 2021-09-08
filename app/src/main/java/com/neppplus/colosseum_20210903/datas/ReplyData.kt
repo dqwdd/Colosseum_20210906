@@ -67,8 +67,6 @@ class ReplyData (
             return replyDisplayFormat.format(this.createdAt.time)
         }
 
-
-
     }
 
 

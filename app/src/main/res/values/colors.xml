@@ -8,5 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="like_red">#DC6757</color>
-    <color name="hate_blue">#637A94</color>
+    <color name="hate_blue">#FF248BFF</color>
 </resources>
