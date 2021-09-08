@@ -10,7 +10,7 @@ class NotiData(
 
     constructor() : this(0, "제목 없음")//기본값들
 
-
+//
     companion object {
 
         //        JSON을 넣으면 -> SideData로 변환해주는 기능
