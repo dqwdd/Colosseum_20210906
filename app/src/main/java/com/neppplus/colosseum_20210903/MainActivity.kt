@@ -61,10 +61,38 @@ class MainActivity : BaseActivity() {
         backBtn.visibility = View.GONE
 //        notificationBtn.visibility = View.VISIBLE
 
-        notificationBtn.visibility = View.VISIBLE
         notiLayout.visibility = View.VISIBLE
 
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        //서버에서 안 읽은 알림이 몇 개인지 알아오자 => 화면에 들어올 때마다 재확인
+
+        ServerUtil.getRequestNotificationCountOrList(mContext, false, object : ServerUtil.JsonResponseHandler{
+            override fun onResponse(jsonObj: JSONObject) {
+                val dataObj = jsonObj.getJSONObject("data")
+                val unreadCount = dataObj.getInt("unread_noty_count")
+
+                runOnUiThread {
+                    if(unreadCount==0) {
+                        notiCountTxt.visibility = View.GONE
+                    }
+                    else {
+                        notiCountTxt.text = unreadCount.toString()
+                        notiCountTxt.visibility = View.VISIBLE
+                    }
+                }
+
+            }
+        })//목록필요없고 갯수만필요하니 fale
+
+        //알림 갯수 : 0개 -> 빨간 동그라미 숨김 처리
+        //1개 이상 -> 빨간 동그라미 보여주기 + 몇 개인지 텍스트 설정
+    }
+
+
 
 //    서버에서 메인 화면에 뿌려줄 정보를 받아오기
     fun getMainDataFromServer() {

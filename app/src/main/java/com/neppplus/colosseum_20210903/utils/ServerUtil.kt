@@ -440,6 +440,44 @@ class ServerUtil {
     //enqueue()==호출을 하고 돌아올 때 할 일
 }
 
+
+
+        //알림 갯수 or 목록까지 가져오기
+        fun getRequestNotificationCountOrList(context : Context, needList : Boolean, handler: JsonResponseHandler?) {
+
+            val url = "${HOST_URL}/notification".toHttpUrlOrNull()!!.newBuilder()
+            url.addEncodedQueryParameter("need_all_notis", needList.toString())
+//            url.addEncodedQueryParameter("value", value)//어디로 뭘 들고 간다
+
+            val urlString = url.toString()
+            Log.d("완성된URL", urlString)
+
+
+            val request = Request.Builder()
+                .url(urlString)
+                .get()
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+
+            })
+
+
+        }
+
     }
 
 }
