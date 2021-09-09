@@ -15,7 +15,9 @@ class ViewReplyDetailActivity : BaseActivity() {
 
     lateinit var mReplyData : ReplyData
 
-    val mChildReplyList : ArrayList<ReplyData>()
+    val mChildReplyList = ArrayList<ReplyData>()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
