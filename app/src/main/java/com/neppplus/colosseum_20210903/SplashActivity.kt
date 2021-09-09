@@ -8,6 +8,7 @@ import android.os.Looper
 import android.util.Log
 import com.neppplus.colosseum_20210903.datas.UserData
 import com.neppplus.colosseum_20210903.utils.ContextUtil
+import com.neppplus.colosseum_20210903.utils.GlobalData
 import com.neppplus.colosseum_20210903.utils.ServerUtil
 import org.json.JSONObject
 
@@ -50,6 +51,9 @@ class SplashActivity : BaseActivity() {
                         val userObj = dataObj.getJSONObject("user")
 
                         val loginUserData = UserData.getUserDataFromJson(userObj)
+
+//                        서버가 알려준 로그인한 사람 데이터를 -> 모든 화면과 공유(GlobalData 클래스 활용)
+                        GlobalData.loginUser = loginUserData
 
                         Log.d("자동로그인", "로그인한 사람 닉네임 - ${loginUserData.nickname}")
 
