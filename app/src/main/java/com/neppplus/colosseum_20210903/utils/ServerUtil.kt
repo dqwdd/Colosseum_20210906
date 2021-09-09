@@ -660,6 +660,48 @@ class ServerUtil {
 
 }
 
+
+
+
+
+
+//        로그인한 내 사용자 정보 가져오기
+        fun getRequestUserData(context : Context, handler: JsonResponseHandler?) {
+
+    val url = "${HOST_URL}/v2/user_info".toHttpUrlOrNull()!!.newBuilder()//이거만바꿈
+//            url.addEncodedQueryParameter("type", type)
+//            url.addEncodedQueryParameter("value", value)//어디로 뭘 들고 간다
+
+    val urlString = url.toString()
+    Log.d("완성된URL", urlString)
+
+
+    val request = Request.Builder()
+        .url(urlString)
+        .get()
+        .header("X-Http-Token", ContextUtil.getToken(context))
+        .build()
+
+    val client = OkHttpClient()
+
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            val bodyString = response.body!!.string()
+            val jsonObj = JSONObject(bodyString)
+            Log.d("서버응답", jsonObj.toString())
+            handler?.onResponse(jsonObj)
+        }
+
+    })
+
+
+}
+
+
     }
 
 }
