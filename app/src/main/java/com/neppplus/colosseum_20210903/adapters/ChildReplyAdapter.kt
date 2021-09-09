@@ -34,15 +34,15 @@ class ChildReplyAdapter(
 
         val data = mList[position]
 
-        val childContentTxt = row.findViewById<TextView>(R.id.childContentTxt)
+
         val childSideAndNicknameTxt = row.findViewById<TextView>(R.id.childSideAndNicknameTxt)
+        val childContentTxt = row.findViewById<TextView>(R.id.childContentTxt)
 
 
 
+        childContentTxt.text = data.content
 
-        childContentTxt.text =""
-
-        childSideAndNicknameTxt.text =""
+        childSideAndNicknameTxt.text = "(${data.selectedSide.title}) ${data.writer.nickname}"
 
 
         return row
