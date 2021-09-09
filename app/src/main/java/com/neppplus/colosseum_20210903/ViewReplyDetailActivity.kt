@@ -1,10 +1,12 @@
 package com.neppplus.colosseum_20210903
 
 import android.content.Context
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.neppplus.colosseum_20210903.adapters.ChildReplyAdapter
 import com.neppplus.colosseum_20210903.adapters.ReplyAdapter
 import com.neppplus.colosseum_20210903.datas.ReplyData
@@ -29,6 +31,30 @@ class ViewReplyDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+//        답글 삭제 리스트 -> 리스트뷰의 이벤트 처리(LongClick)
+        childReplyListView.setOnItemLongClickListener { adapterView, view, position, l ->
+
+//            경고창 -> 정말 해당 답글을 삭제하시겠습니까?
+
+            val alert = AlertDialog.Builder(mContext)
+            alert.setMessage("정말 해당 답글을 삭제하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+
+//                해당 답글 삭제 -> API 요청 + 새로고침
+
+            })
+
+            alert.setNegativeButton("취소", null)
+            alert.show()
+
+            return@setOnItemLongClickListener true//true면 롱클릭만, false면 손 떼면 일반클릭도 같이 실행
+        }
+
+
+
+
+
 
         okBtn.setOnClickListener {
             val inputContent = contentEdt.text.toString()
