@@ -379,6 +379,8 @@ class ServerUtil {
 
 
 
+
+
 //        좋아요 / 싫어요 찍기
         fun postRequestLikeOrHate(context: Context, replyId: Int, isLike: Boolean, handler : JsonResponseHandler? ) {
 //                                 토큰값을 받아와야해서 context필요함
@@ -439,6 +441,8 @@ class ServerUtil {
     })//request를 호출해주세요하는거
     //enqueue()==호출을 하고 돌아올 때 할 일
 }
+
+
 
 
 
