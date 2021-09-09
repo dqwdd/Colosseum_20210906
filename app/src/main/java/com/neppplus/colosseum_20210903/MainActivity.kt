@@ -63,6 +63,9 @@ class MainActivity : BaseActivity() {
 
         notiLayout.visibility = View.VISIBLE
 
+//        내 프로필 화면 버튼 보여주기
+        profileImg.visibility = View.VISIBLE
+
     }
 
     override fun onResume() {
