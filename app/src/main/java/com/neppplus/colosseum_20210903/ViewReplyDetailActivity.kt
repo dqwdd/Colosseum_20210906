@@ -45,19 +45,31 @@ class ViewReplyDetailActivity : BaseActivity() {
 
             val clickedReply = mChildReplyList[position]
 
-            if (GlobalData.loginUser!!.id == clickedReply.writer.id) {
+            if (GlobalData.loginUser!!.id != clickedReply.writer.id) {
                 Toast.makeText(mContext, "자신이 적은 답글만 삭제할 수 있습니다", Toast.LENGTH_SHORT).show()
                 return@setOnItemLongClickListener true
             }
 
 
-//            경고창 -> 정말 해당 답글을 삭제하시겠습니까?
+//            경고창 -> 정말 해당 답글을 삭제하시겠습니까?20210909
 
             val alert = AlertDialog.Builder(mContext)
             alert.setMessage("정말 해당 답글을 삭제하시겠습니까?")
             alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
 //                해당 답글 삭제 -> API 요청 + 새로고침
+                ServerUtil.deleteRequestReply(mContext, clickedReply.id, object : ServerUtil.JsonResponseHandler{
+                    override fun onResponse(jsonObj: JSONObject) {
+
+                        runOnUiThread {
+                            Toast.makeText(mContext, "댓글을 삭제했습니다", Toast.LENGTH_SHORT).show()
+                        }
+
+//                        답글 목록 새로 불러오기
+                        getChildRepliesFromServer()
+
+                    }
+                })
 
             })
 

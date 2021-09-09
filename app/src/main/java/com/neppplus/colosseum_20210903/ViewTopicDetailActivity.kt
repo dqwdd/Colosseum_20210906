@@ -1,15 +1,18 @@
 package com.neppplus.colosseum_20210903
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.neppplus.colosseum_20210903.adapters.ReplyAdapter
 import com.neppplus.colosseum_20210903.datas.ReplyData
 import com.neppplus.colosseum_20210903.datas.TopicData
+import com.neppplus.colosseum_20210903.utils.GlobalData
 import com.neppplus.colosseum_20210903.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_topic_detail.*
 import org.json.JSONObject
@@ -38,6 +41,54 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 
     override fun setupEvents() {
+
+        replyListView.setOnItemLongClickListener { adapterView, view, position, l ->
+
+//            1. 오래 눌린 댓글이 어떤건지 추출
+
+//            2. 그 댓글의 작성자가 내가 맞는지 확인
+//            => 다른 사람이라면 토스트로 "본인이 작성한 글만 삭제 가능합니다"
+
+//            3. 내가 작성자가 맞다면, 경고창 띄우기 "정말 삭제하시겠습니까?"
+
+//            4. 확인 누르면 => 댓글 삭제 API 호출 (ServerUtil에 있는거 재활용)
+//            =응답 돌아오면 바로 새로고침만
+
+
+            val clickedReply = mReplyList[position]
+
+            if (clickedReply.writer.id != GlobalData.loginUser!!.id) {
+                Toast.makeText(mContext, "내가 작성한 의견만 삭제 가능합니다.", Toast.LENGTH_SHORT).show()
+                return@setOnItemLongClickListener true
+            }
+
+
+            val alert = AlertDialog.Builder(mContext)
+            alert.setMessage("정말 삭제하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+//            4. 확인 누르면 -> 댓글 삭제 API 호출 (ServerUtil에 있는것 재활용)
+//             => 응답 돌아오면 바로 새로고침만.
+
+                ServerUtil.deleteRequestReply(mContext, clickedReply.id, object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
+//                        토론 진행 현황 + 의견 목록 새로 불러오기
+                        getTopicDetailDataFromServer()
+                    }
+
+                })
+
+
+            })
+            alert.setNegativeButton("취소", null)
+            alert.show()
+
+
+
+            return@setOnItemLongClickListener true
+        }
+
+
+
 
         addReplyBtn.setOnClickListener {
 
