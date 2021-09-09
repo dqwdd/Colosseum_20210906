@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.neppplus.colosseum_20210903.adapters.ChildReplyAdapter
+import com.neppplus.colosseum_20210903.adapters.ReplyAdapter
 import com.neppplus.colosseum_20210903.datas.ReplyData
 import com.neppplus.colosseum_20210903.datas.SideData
 import com.neppplus.colosseum_20210903.utils.ServerUtil
@@ -17,7 +19,7 @@ class ViewReplyDetailActivity : BaseActivity() {
 
     val mChildReplyList = ArrayList<ReplyData>()
 
-
+    lateinit var mChildReplyAdapter: ChildReplyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +69,11 @@ class ViewReplyDetailActivity : BaseActivity() {
 
         getChildRepliesFromServer()
 
+        mChildReplyAdapter = ChildReplyAdapter(mContext, R.layout.chile_reply_list_item, mChildReplyList)
+        childReplyListView.adapter = mChildReplyAdapter
+        //이거 만들고 밑에 mChildReplyAdapter.notifyDataSetChanged()이거 선언해야함
+        //프롬서버라서 늦게 올 수 있으니까 같이 오게 런쓰레스
+
     }
 
     fun getChildRepliesFromServer() {
@@ -81,6 +88,12 @@ class ViewReplyDetailActivity : BaseActivity() {
                 for ( i in 0 until repliesArr.length() ) {
                     mChildReplyList.add(ReplyData.getReplyDataFromJson(repliesArr.getJSONObject(i)))
                 }
+
+
+                runOnUiThread {
+                    mChildReplyAdapter.notifyDataSetChanged()
+                }
+
 
             }
 
