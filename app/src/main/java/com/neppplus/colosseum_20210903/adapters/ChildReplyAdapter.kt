@@ -51,7 +51,14 @@ class ChildReplyAdapter(
 
 
 
-        //댓글의 답글 입력화면에서 좋아요/싫어요 누르는 함수
+
+
+        //이제부터 댓글의 답글 입력화면에서 좋아요/싫어요 누르는 함수
+
+        childLikeCountTxt.text = "좋아요 ${data.lickCount}개"
+        childHateCountTxt.text = "싫어요 ${data.hateCount}개"
+
+
         if (data.myLike) {
             childLikeCountTxt.setBackgroundResource(R.drawable.red_border_box)
             childLikeCountTxt.setTextColor(mContext.resources.getColor(R.color.red_border_box))
@@ -69,6 +76,8 @@ class ChildReplyAdapter(
             childHateCountTxt.setBackgroundResource(R.drawable.black_border_rect)
             childHateCountTxt.setTextColor(mContext.resources.getColor(R.color.black))
         }
+
+
 
         childLikeCountTxt.tag = true
         childHateCountTxt.tag = false
@@ -91,12 +100,8 @@ class ChildReplyAdapter(
 
 //        추가설명 : 좋아요/싫어요 갯수 바로 변경되도록 (어댑터 -> 액티비티의 기능 실행)
 
-
         childLikeCountTxt.setOnClickListener (ocl)
         childHateCountTxt.setOnClickListener (ocl)
-
-
-
 
         return row
     }
