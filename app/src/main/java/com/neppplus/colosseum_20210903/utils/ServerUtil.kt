@@ -612,6 +612,50 @@ class ServerUtil {
 
 
 
+
+//        댓글 상세 정보(답글 목록) 가져오기
+
+        fun getRequestReplyDetail(context : Context, replyId: Int, handler: JsonResponseHandler?) {
+
+    val url = "${HOST_URL}/topic_reply".toHttpUrlOrNull()!!.newBuilder()
+//            주소/3 등 어떤 데이터를 보고싶은지, /숫자 형태로 이어붙이는 주소-> path라고 부름
+//            주소?type=EMAIL 등 파라미터이름=값 형태로 이어붙이는 주소 -> Query라고 부름
+
+    url.addPathSegment(replyId.toString())
+
+//            url.addEncodedQueryParameter("type", type)
+//    url.addEncodedQueryParameter("order_type", "NEW")//별개의 헤더에 담아서 담을거 없음.이제끝
+//            url.addEncodedQueryParameter("value", value)//어디로 뭘 들고 간다
+
+    val urlString = url.toString()
+    Log.d("완성된URL", urlString)
+
+
+    val request = Request.Builder()
+        .url(urlString)
+        .get()
+        .header("X-Http-Token", ContextUtil.getToken(context))
+        .build()
+
+    val client = OkHttpClient()
+
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            val bodyString = response.body!!.string()
+            val jsonObj = JSONObject(bodyString)
+            Log.d("서버응답", jsonObj.toString())
+            handler?.onResponse(jsonObj)
+        }
+
+    })
+
+
+}
+
     }
 
 }

@@ -15,6 +15,8 @@ class ViewReplyDetailActivity : BaseActivity() {
 
     lateinit var mReplyData : ReplyData
 
+    val mChildReplyList : ArrayList<ReplyData>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_reply_detail)
@@ -60,5 +62,27 @@ class ViewReplyDetailActivity : BaseActivity() {
         sideAndNicknameTxt.text = "(${mReplyData.selectedSide.title}) ${mReplyData.writer.nickname}"
         replyContentTxt.text = mReplyData.content
 
+
+        getChildRepliesFromServer()
+
     }
+
+    fun getChildRepliesFromServer() {
+        ServerUtil.getRequestReplyDetail(mContext, mReplyData.id, object : ServerUtil.JsonResponseHandler{
+            override fun onResponse(jsonObj: JSONObject) {
+
+                val dataObj = jsonObj.getJSONObject("data")
+                val replyObj = dataObj.getJSONObject("reply")
+
+                val repliesArr = replyObj.getJSONArray("replies")
+
+                for ( i in 0 until repliesArr.length() ) {
+                    mChildReplyList.add(ReplyData.getReplyDataFromJson(repliesArr.getJSONObject(i)))
+                }
+
+            }
+
+        })
+    }
+
 }
