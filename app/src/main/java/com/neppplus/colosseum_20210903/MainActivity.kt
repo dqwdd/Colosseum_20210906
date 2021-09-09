@@ -44,6 +44,11 @@ class MainActivity : BaseActivity() {
 
         }
 
+        profileImg.setOnClickListener {
+            val myIntent = Intent(mContext, MyProfileActivity::class.java)
+            startActivity(myIntent)
+        }
+
     }
 
     override fun setValues() {
